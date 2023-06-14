@@ -1,0 +1,1025 @@
+<style>
+html, body { background-color: white; }
+table { border-collapse:collapse; border:none; }
+caption { font-weight: bold; text-align:left; }
+td {  }
+.thead { border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; }
+.tdata { padding:0.2cm; text-align:left; vertical-align:top; }
+.arc { background-color:#f2f2f2; }
+.summary { padding-top:0.1cm; padding-bottom:0.1cm; }
+.summarydata { text-align:left; }
+.fixedparts { font-weight:bold; text-align:left; }
+.randomparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.zeroparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.simplexparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.lasttablerow { border-bottom: double; }
+.firsttablerow {  }
+.firstsumrow { border-top:1px solid; }
+.labelcellborder { border-bottom:1px solid; }
+.depvarhead { text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal; }
+.depvarheadnodv { border-top: double; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal; }
+.leftalign { text-align:left; }
+.centeralign { text-align:center; }
+.firsttablecol { text-align:left; }
+.footnote { font-style:italic; border-top:double black; text-align:right; }
+.subtitle { font-weight: normal; }
+.modelcolumn1 {  }
+.modelcolumn2 {  }
+.modelcolumn3 {  }
+.modelcolumn4 {  }
+.modelcolumn5 {  }
+.modelcolumn6 {  }
+.modelcolumn7 {  }
+.col1 {  }
+.col2 {  }
+.col3 {  }
+.col4 {  }
+.col5 {  }
+.col6 {  }
+</style>
+<table>
+<tr>
+<th class="thead firsttablerow firsttablecol col1">&nbsp;</th>
+<th colspan="4" class="thead firsttablerow">Fec_yesterday</th>
+</tr>
+<tr>
+<td class="depvarhead firsttablerow firsttablecol col1">Predictors</td>
+<td class="depvarhead firsttablerow col2">Estimates</td>
+<td class="depvarhead firsttablerow col3">CI</td>
+<td class="depvarhead firsttablerow col4">p</td>
+<td class="depvarhead firsttablerow col5">df</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Intercept)</td>
+<td class="tdata centeralign modelcolumn1 col2">180.96</td>
+<td class="tdata centeralign modelcolumn1 col3">170.35&nbsp;&ndash;&nbsp;191.57</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Env [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;70.24</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;84.39&nbsp;&ndash;&nbsp;-56.09</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [4]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;39.21</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;53.09&nbsp;&ndash;&nbsp;-25.32</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [5]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;136.10</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;153.43&nbsp;&ndash;&nbsp;-118.77</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Trt 3 [M_Androdioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;27.12</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;41.01&nbsp;&ndash;&nbsp;-13.24</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Trt 3 [M_Dioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;44.02</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;58.72&nbsp;&ndash;&nbsp;-29.31</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Pop type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">22.55</td>
+<td class="tdata centeralign modelcolumn1 col3">10.26&nbsp;&ndash;&nbsp;34.85</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Block [2]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;30.74</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;34.97&nbsp;&ndash;&nbsp;-26.52</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Block [3]</td>
+<td class="tdata centeralign modelcolumn1 col2">3.38</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;0.04&nbsp;&ndash;&nbsp;6.80</td>
+<td class="tdata centeralign modelcolumn1 col4">0.053</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Env [Evolved] × Day [4]</td>
+<td class="tdata centeralign modelcolumn1 col2">90.76</td>
+<td class="tdata centeralign modelcolumn1 col3">71.12&nbsp;&ndash;&nbsp;110.39</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Env [Evolved] × Day [5]</td>
+<td class="tdata centeralign modelcolumn1 col2">56.40</td>
+<td class="tdata centeralign modelcolumn1 col3">34.19&nbsp;&ndash;&nbsp;78.60</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Env [Evolved] × Trt 3<br>[M_Androdioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">13.55</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;6.09&nbsp;&ndash;&nbsp;33.18</td>
+<td class="tdata centeralign modelcolumn1 col4">0.176</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Env [Evolved] × Trt 3<br>[M_Dioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">21.76</td>
+<td class="tdata centeralign modelcolumn1 col3">2.12&nbsp;&ndash;&nbsp;41.39</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.030</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [4] × Trt 3<br>[M_Androdioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">97.15</td>
+<td class="tdata centeralign modelcolumn1 col3">77.52&nbsp;&ndash;&nbsp;116.79</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [5] × Trt 3<br>[M_Androdioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">166.23</td>
+<td class="tdata centeralign modelcolumn1 col3">142.04&nbsp;&ndash;&nbsp;190.42</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [4] × Trt 3<br>[M_Dioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">103.48</td>
+<td class="tdata centeralign modelcolumn1 col3">83.84&nbsp;&ndash;&nbsp;123.11</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [5] × Trt 3<br>[M_Dioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">153.27</td>
+<td class="tdata centeralign modelcolumn1 col3">128.94&nbsp;&ndash;&nbsp;177.59</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Env [Evolved] × Pop type<br>[Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;30.92</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;47.28&nbsp;&ndash;&nbsp;-14.56</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [4] × Pop type<br>[Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;37.42</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;53.84&nbsp;&ndash;&nbsp;-20.99</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Day [5] × Pop type<br>[Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;28.58</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;49.01&nbsp;&ndash;&nbsp;-8.16</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.006</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Trt 3 [M_Androdioecious]<br>× Pop type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">4.63</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;11.73&nbsp;&ndash;&nbsp;20.98</td>
+<td class="tdata centeralign modelcolumn1 col4">0.579</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">Trt 3 [M_Dioecious] × Pop<br>type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;3.22</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;20.54&nbsp;&ndash;&nbsp;14.10</td>
+<td class="tdata centeralign modelcolumn1 col4">0.715</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [4])<br>× Trt 3<br>[M_Androdioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;49.84</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;77.60&nbsp;&ndash;&nbsp;-22.07</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [5])<br>× Trt 3<br>[M_Androdioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;5.50</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;36.66&nbsp;&ndash;&nbsp;25.65</td>
+<td class="tdata centeralign modelcolumn1 col4">0.729</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [4])<br>× Trt 3 [M_Dioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;41.60</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;69.37&nbsp;&ndash;&nbsp;-13.83</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.003</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [5])<br>× Trt 3 [M_Dioecious]</td>
+<td class="tdata centeralign modelcolumn1 col2">18.72</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;12.54&nbsp;&ndash;&nbsp;49.98</td>
+<td class="tdata centeralign modelcolumn1 col4">0.240</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [4])<br>× Pop type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">24.80</td>
+<td class="tdata centeralign modelcolumn1 col3">1.66&nbsp;&ndash;&nbsp;47.93</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.036</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [5])<br>× Pop type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">28.36</td>
+<td class="tdata centeralign modelcolumn1 col3">2.24&nbsp;&ndash;&nbsp;54.49</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.033</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">3.37</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;19.71&nbsp;&ndash;&nbsp;26.46</td>
+<td class="tdata centeralign modelcolumn1 col4">0.774</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">19.96</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;3.13&nbsp;&ndash;&nbsp;43.05</td>
+<td class="tdata centeralign modelcolumn1 col4">0.090</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Day [4] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">12.53</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;10.60&nbsp;&ndash;&nbsp;35.66</td>
+<td class="tdata centeralign modelcolumn1 col4">0.288</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Day [5] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">4.47</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;24.09&nbsp;&ndash;&nbsp;33.03</td>
+<td class="tdata centeralign modelcolumn1 col4">0.759</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Day [4] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">35.58</td>
+<td class="tdata centeralign modelcolumn1 col3">12.45&nbsp;&ndash;&nbsp;58.72</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.003</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Day [5] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">36.49</td>
+<td class="tdata centeralign modelcolumn1 col3">7.83&nbsp;&ndash;&nbsp;65.16</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.013</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [4]<br>× Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">3.17</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;29.47&nbsp;&ndash;&nbsp;35.81</td>
+<td class="tdata centeralign modelcolumn1 col4">0.849</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [5]<br>× Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;0.52</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;37.21&nbsp;&ndash;&nbsp;36.16</td>
+<td class="tdata centeralign modelcolumn1 col4">0.978</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [4]<br>× Trt 3 [M_Dioecious]) ×<br>Pop type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;32.39</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;65.03&nbsp;&ndash;&nbsp;0.26</td>
+<td class="tdata centeralign modelcolumn1 col4">0.052</td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td class="tdata firsttablecol col1">(Env [Evolved] × Day [5]<br>× Trt 3 [M_Dioecious]) ×<br>Pop type [Evolved]</td>
+<td class="tdata centeralign modelcolumn1 col2">&#45;50.01</td>
+<td class="tdata centeralign modelcolumn1 col3">&#45;86.78&nbsp;&ndash;&nbsp;-13.25</td>
+<td class="tdata centeralign modelcolumn1 col4"><strong>0.008</strong></td>
+<td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+<tr>
+<td colspan="5" class="randomparts">Random Effects</td>
+</tr>
+
+<tr>
+<td class="tdata leftalign summary">&sigma;<sup>2</sup></td>
+<td class="tdata summary summarydata" colspan="4">1504.45</td>
+</tr>
+
+<tr>
+<td class="tdata leftalign summary">&tau;<sub>00</sub> <sub>Rep2:Population</sub></td>
+<td class="tdata summary summarydata" colspan="4">0.00</td>
+
+<tr>
+<td class="tdata leftalign summary">&tau;<sub>00</sub> <sub>Population</sub></td>
+<td class="tdata summary summarydata" colspan="4">9.13</td>
+
+<tr>
+<td class="tdata leftalign summary">N <sub>Rep2</sub></td>
+<td class="tdata summary summarydata" colspan="4">880</td>
+
+<tr>
+<td class="tdata leftalign summary">N <sub>Population</sub></td>
+<td class="tdata summary summarydata" colspan="4">22</td>
+<tr>
+<td class="tdata leftalign summary firstsumrow">Observations</td>
+<td class="tdata summary summarydata firstsumrow" colspan="4">3595</td>
+</tr>
+<tr>
+<td class="tdata leftalign summary">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
+<td class="tdata summary summarydata" colspan="4">0.658 / NA</td>
+</tr>
+
+</table>
+
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<style>
+html, body { background-color: white; }
+table { border-collapse:collapse; border:none; }
+caption { font-weight: bold; text-align:left; }
+td {  }
+.thead { border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; }
+.tdata { padding:0.2cm; text-align:left; vertical-align:top; }
+.arc { background-color:#f2f2f2; }
+.summary { padding-top:0.1cm; padding-bottom:0.1cm; }
+.summarydata { text-align:left; }
+.fixedparts { font-weight:bold; text-align:left; }
+.randomparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.zeroparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.simplexparts { font-weight:bold; text-align:left; padding-top:.8em; }
+.lasttablerow { border-bottom: double; }
+.firsttablerow {  }
+.firstsumrow { border-top:1px solid; }
+.labelcellborder { border-bottom:1px solid; }
+.depvarhead { text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal; }
+.depvarheadnodv { border-top: double; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal; }
+.leftalign { text-align:left; }
+.centeralign { text-align:center; }
+.firsttablecol { text-align:left; }
+.footnote { font-style:italic; border-top:double black; text-align:right; }
+.subtitle { font-weight: normal; }
+.modelcolumn1 {  }
+.modelcolumn2 {  }
+.modelcolumn3 {  }
+.modelcolumn4 {  }
+.modelcolumn5 {  }
+.modelcolumn6 {  }
+.modelcolumn7 {  }
+.col1 {  }
+.col2 {  }
+.col3 {  }
+.col4 {  }
+.col5 {  }
+.col6 {  }
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th class="thead firsttablerow firsttablecol col1">&nbsp;</th>
+    <th colspan="4" class="thead firsttablerow">Fec_yesterday</th>
+  </tr>
+  <tr>
+    <td class="depvarhead firsttablerow firsttablecol col1">Predictors</td>
+    <td class="depvarhead firsttablerow col2">Estimates</td>
+    <td class="depvarhead firsttablerow col3">CI</td>
+    <td class="depvarhead firsttablerow col4">p</td>
+    <td class="depvarhead firsttablerow col5">df</td>
+  </tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Intercept)</td>
+    <td class="tdata centeralign modelcolumn1 col2">180.96</td>
+    <td class="tdata centeralign modelcolumn1 col3">170.35&nbsp;&ndash;&nbsp;191.57</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Env [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;70.24</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;84.39&nbsp;&ndash;&nbsp;-56.09</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [4]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;39.21</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;53.09&nbsp;&ndash;&nbsp;-25.32</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [5]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;136.10</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;153.43&nbsp;&ndash;&nbsp;-118.77</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Trt 3 [M_Androdioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;27.12</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;41.01&nbsp;&ndash;&nbsp;-13.24</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Trt 3 [M_Dioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;44.02</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;58.72&nbsp;&ndash;&nbsp;-29.31</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Pop type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">22.55</td>
+    <td class="tdata centeralign modelcolumn1 col3">10.26&nbsp;&ndash;&nbsp;34.85</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Block [2]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;30.74</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;34.97&nbsp;&ndash;&nbsp;-26.52</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Block [3]</td>
+    <td class="tdata centeralign modelcolumn1 col2">3.38</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;0.04&nbsp;&ndash;&nbsp;6.80</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.053</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Env [Evolved] × Day [4]</td>
+    <td class="tdata centeralign modelcolumn1 col2">90.76</td>
+    <td class="tdata centeralign modelcolumn1 col3">71.12&nbsp;&ndash;&nbsp;110.39</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Env [Evolved] × Day [5]</td>
+    <td class="tdata centeralign modelcolumn1 col2">56.40</td>
+    <td class="tdata centeralign modelcolumn1 col3">34.19&nbsp;&ndash;&nbsp;78.60</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Env [Evolved] × Trt 3<br>[M_Androdioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">13.55</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;6.09&nbsp;&ndash;&nbsp;33.18</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.176</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Env [Evolved] × Trt 3<br>[M_Dioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">21.76</td>
+    <td class="tdata centeralign modelcolumn1 col3">2.12&nbsp;&ndash;&nbsp;41.39</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.030</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [4] × Trt 3<br>[M_Androdioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">97.15</td>
+    <td class="tdata centeralign modelcolumn1 col3">77.52&nbsp;&ndash;&nbsp;116.79</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [5] × Trt 3<br>[M_Androdioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">166.23</td>
+    <td class="tdata centeralign modelcolumn1 col3">142.04&nbsp;&ndash;&nbsp;190.42</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [4] × Trt 3<br>[M_Dioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">103.48</td>
+    <td class="tdata centeralign modelcolumn1 col3">83.84&nbsp;&ndash;&nbsp;123.11</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [5] × Trt 3<br>[M_Dioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">153.27</td>
+    <td class="tdata centeralign modelcolumn1 col3">128.94&nbsp;&ndash;&nbsp;177.59</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Env [Evolved] × Pop type<br>[Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;30.92</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;47.28&nbsp;&ndash;&nbsp;-14.56</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [4] × Pop type<br>[Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;37.42</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;53.84&nbsp;&ndash;&nbsp;-20.99</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Day [5] × Pop type<br>[Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;28.58</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;49.01&nbsp;&ndash;&nbsp;-8.16</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.006</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Trt 3 [M_Androdioecious]<br>× Pop type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">4.63</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;11.73&nbsp;&ndash;&nbsp;20.98</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.579</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">Trt 3 [M_Dioecious] × Pop<br>type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;3.22</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;20.54&nbsp;&ndash;&nbsp;14.10</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.715</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [4])<br>× Trt 3<br>[M_Androdioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;49.84</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;77.60&nbsp;&ndash;&nbsp;-22.07</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>&lt;0.001</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [5])<br>× Trt 3<br>[M_Androdioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;5.50</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;36.66&nbsp;&ndash;&nbsp;25.65</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.729</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [4])<br>× Trt 3 [M_Dioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;41.60</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;69.37&nbsp;&ndash;&nbsp;-13.83</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.003</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [5])<br>× Trt 3 [M_Dioecious]</td>
+    <td class="tdata centeralign modelcolumn1 col2">18.72</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;12.54&nbsp;&ndash;&nbsp;49.98</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.240</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [4])<br>× Pop type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">24.80</td>
+    <td class="tdata centeralign modelcolumn1 col3">1.66&nbsp;&ndash;&nbsp;47.93</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.036</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [5])<br>× Pop type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">28.36</td>
+    <td class="tdata centeralign modelcolumn1 col3">2.24&nbsp;&ndash;&nbsp;54.49</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.033</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">3.37</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;19.71&nbsp;&ndash;&nbsp;26.46</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.774</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">19.96</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;3.13&nbsp;&ndash;&nbsp;43.05</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.090</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Day [4] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">12.53</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;10.60&nbsp;&ndash;&nbsp;35.66</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.288</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Day [5] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">4.47</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;24.09&nbsp;&ndash;&nbsp;33.03</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.759</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Day [4] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">35.58</td>
+    <td class="tdata centeralign modelcolumn1 col3">12.45&nbsp;&ndash;&nbsp;58.72</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.003</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Day [5] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">36.49</td>
+    <td class="tdata centeralign modelcolumn1 col3">7.83&nbsp;&ndash;&nbsp;65.16</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.013</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [4]<br>× Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">3.17</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;29.47&nbsp;&ndash;&nbsp;35.81</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.849</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [5]<br>× Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;0.52</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;37.21&nbsp;&ndash;&nbsp;36.16</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.978</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [4]<br>× Trt 3 [M_Dioecious]) ×<br>Pop type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;32.39</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;65.03&nbsp;&ndash;&nbsp;0.26</td>
+    <td class="tdata centeralign modelcolumn1 col4">0.052</td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td class="tdata firsttablecol col1">(Env [Evolved] × Day [5]<br>× Trt 3 [M_Dioecious]) ×<br>Pop type [Evolved]</td>
+    <td class="tdata centeralign modelcolumn1 col2">&#45;50.01</td>
+    <td class="tdata centeralign modelcolumn1 col3">&#45;86.78&nbsp;&ndash;&nbsp;-13.25</td>
+    <td class="tdata centeralign modelcolumn1 col4"><strong>0.008</strong></td>
+    <td class="tdata centeralign modelcolumn1 col5">3554.00</td>
+</tr>
+  <tr>
+    <td colspan="5" class="randomparts">Random Effects</td>
+  </tr>
+
+  <tr>
+    <td class="tdata leftalign summary">&sigma;<sup>2</sup></td>
+    <td class="tdata summary summarydata" colspan="4">1504.45</td>
+  </tr>
+
+  <tr>
+    <td class="tdata leftalign summary">&tau;<sub>00</sub> <sub>Rep2:Population</sub></td>
+    <td class="tdata summary summarydata" colspan="4">0.00</td>
+
+  <tr>
+    <td class="tdata leftalign summary">&tau;<sub>00</sub> <sub>Population</sub></td>
+    <td class="tdata summary summarydata" colspan="4">9.13</td>
+
+  <tr>
+    <td class="tdata leftalign summary">N <sub>Rep2</sub></td>
+    <td class="tdata summary summarydata" colspan="4">880</td>
+
+  <tr>
+    <td class="tdata leftalign summary">N <sub>Population</sub></td>
+    <td class="tdata summary summarydata" colspan="4">22</td>
+  <tr>
+    <td class="tdata leftalign summary firstsumrow">Observations</td>
+    <td class="tdata summary summarydata firstsumrow" colspan="4">3595</td>
+  </tr>
+  <tr>
+    <td class="tdata leftalign summary">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
+    <td class="tdata summary summarydata" colspan="4">0.658 / NA</td>
+  </tr>
+
+</table>
+
+</body></html>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="4" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">Fec_yesterday</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">p</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">df</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">180.96</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">170.35&nbsp;&ndash;&nbsp;191.57</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Env [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;70.24</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;84.39&nbsp;&ndash;&nbsp;-56.09</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [4]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;39.21</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;53.09&nbsp;&ndash;&nbsp;-25.32</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [5]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;136.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;153.43&nbsp;&ndash;&nbsp;-118.77</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Trt 3 [M_Androdioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;27.12</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;41.01&nbsp;&ndash;&nbsp;-13.24</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Trt 3 [M_Dioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;44.02</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;58.72&nbsp;&ndash;&nbsp;-29.31</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Pop type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">22.55</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">10.26&nbsp;&ndash;&nbsp;34.85</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Block [2]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;30.74</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;34.97&nbsp;&ndash;&nbsp;-26.52</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Block [3]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3.38</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.04&nbsp;&ndash;&nbsp;6.80</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.053</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Env [Evolved] × Day [4]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">90.76</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">71.12&nbsp;&ndash;&nbsp;110.39</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Env [Evolved] × Day [5]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">56.40</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">34.19&nbsp;&ndash;&nbsp;78.60</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Env [Evolved] × Trt 3<br>[M_Androdioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">13.55</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;6.09&nbsp;&ndash;&nbsp;33.18</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.176</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Env [Evolved] × Trt 3<br>[M_Dioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">21.76</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">2.12&nbsp;&ndash;&nbsp;41.39</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.030</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [4] × Trt 3<br>[M_Androdioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">97.15</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">77.52&nbsp;&ndash;&nbsp;116.79</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [5] × Trt 3<br>[M_Androdioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">166.23</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">142.04&nbsp;&ndash;&nbsp;190.42</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [4] × Trt 3<br>[M_Dioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">103.48</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">83.84&nbsp;&ndash;&nbsp;123.11</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [5] × Trt 3<br>[M_Dioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">153.27</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">128.94&nbsp;&ndash;&nbsp;177.59</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Env [Evolved] × Pop type<br>[Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;30.92</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;47.28&nbsp;&ndash;&nbsp;-14.56</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [4] × Pop type<br>[Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;37.42</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;53.84&nbsp;&ndash;&nbsp;-20.99</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Day [5] × Pop type<br>[Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;28.58</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;49.01&nbsp;&ndash;&nbsp;-8.16</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.006</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Trt 3 [M_Androdioecious]<br>× Pop type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">4.63</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;11.73&nbsp;&ndash;&nbsp;20.98</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.579</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Trt 3 [M_Dioecious] × Pop<br>type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;3.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;20.54&nbsp;&ndash;&nbsp;14.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.715</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [4])<br>× Trt 3<br>[M_Androdioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;49.84</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;77.60&nbsp;&ndash;&nbsp;-22.07</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [5])<br>× Trt 3<br>[M_Androdioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;5.50</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;36.66&nbsp;&ndash;&nbsp;25.65</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.729</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [4])<br>× Trt 3 [M_Dioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;41.60</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;69.37&nbsp;&ndash;&nbsp;-13.83</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.003</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [5])<br>× Trt 3 [M_Dioecious]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">18.72</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;12.54&nbsp;&ndash;&nbsp;49.98</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.240</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [4])<br>× Pop type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">24.80</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.66&nbsp;&ndash;&nbsp;47.93</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.036</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [5])<br>× Pop type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">28.36</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">2.24&nbsp;&ndash;&nbsp;54.49</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.033</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3.37</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;19.71&nbsp;&ndash;&nbsp;26.46</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.774</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">19.96</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;3.13&nbsp;&ndash;&nbsp;43.05</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.090</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Day [4] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">12.53</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;10.60&nbsp;&ndash;&nbsp;35.66</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.288</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Day [5] × Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">4.47</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;24.09&nbsp;&ndash;&nbsp;33.03</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.759</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Day [4] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">35.58</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">12.45&nbsp;&ndash;&nbsp;58.72</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.003</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Day [5] × Trt 3<br>[M_Dioecious]) × Pop type<br>[Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">36.49</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">7.83&nbsp;&ndash;&nbsp;65.16</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.013</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [4]<br>× Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3.17</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;29.47&nbsp;&ndash;&nbsp;35.81</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.849</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [5]<br>× Trt 3<br>[M_Androdioecious]) × Pop<br>type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.52</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;37.21&nbsp;&ndash;&nbsp;36.16</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.978</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [4]<br>× Trt 3 [M_Dioecious]) ×<br>Pop type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;32.39</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;65.03&nbsp;&ndash;&nbsp;0.26</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.052</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Env [Evolved] × Day [5]<br>× Trt 3 [M_Dioecious]) ×<br>Pop type [Evolved]</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;50.01</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;86.78&nbsp;&ndash;&nbsp;-13.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.008</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3554.00</td>
+</tr>
+<tr>
+<td colspan="5" style="font-weight:bold; text-align:left; padding-top:.8em;">Random Effects</td>
+</tr>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&sigma;<sup>2</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="4">1504.45</td>
+</tr>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&tau;<sub>00</sub> <sub>Rep2:Population</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="4">0.00</td>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&tau;<sub>00</sub> <sub>Population</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="4">9.13</td>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N <sub>Rep2</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="4">880</td>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N <sub>Population</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="4">22</td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="4">3595</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="4">0.658 / NA</td>
+</tr>
+
+</table>
+
+NULL
+TRUE

@@ -22,15 +22,19 @@ library(magrittr)
 
 ```{r}
 
+# we import the raw data
 raw_fec_data = read.csv2("../data_sheets/fec_data.csv")
-sum(is.na(raw_fec_data)) #lots of NAs because no data for block 1, 5th day and 10 plates on 2nd block == only 5 missing values due to survey error
 raw_surv_data = read.csv2("../data_sheets/surv_data.csv")
+
+#checking for missing values
+sum(is.na(raw_fec_data)) #lots of NAs because no data for block 1, 5th day (330) and 10 plates on 2nd block (30) : only 5 missing values due to survey error
 
 ```
 
 ##Creating variable to monitor the different blocks and populations
 ```{r}
 
+#creating our factors
 raw_fec_data$Env <- ifelse(raw_fec_data$Block %in% c(1,2), "Ancestral", "Evolved")
 raw_fec_data$Pop_type <- ifelse(grepl("^.00",raw_fec_data$Population),"Ancestral","Evolved")
 raw_fec_data$Sex_struct <- ifelse(grepl("AA|A0",raw_fec_data$Population),"Androdioecious","Dioecious")
@@ -62,7 +66,7 @@ wide_surv_data <- raw_surv_data %>%
 ```{r}
 
 
-#we create a column that contains the number of worms the day before (theorically 5/5 and correct those who must be)
+#we create a column that contains the number of worms the day before (theorically 5/5 and correct manually those who must be)
 
 wide_surv_data$Herm_alive_2 <- rep(5, times = 1320)
 wide_surv_data$Male_alive_2 <- rep(c(rep(0, times = 110), rep(5, times = 220)), times = 4)
@@ -158,8 +162,8 @@ worms_mortality$Male_mortality <- 100 * (worms_mortality$Male_alive_2 - worms_mo
 ##Creating a dataframe with the number of worms that layed eggs
 
 ```{r}
-#do we check that the number of males is enough regarding of fem/herm ? how do we define it ?
 
+#adding the total fecundity calculated
 wide_fec_data <- wide_fec_data %>% mutate(Total=rowSums(wide_fec_data[,c(10:12)],na.rm=TRUE),
                                           Fec_3_pr = wide_fec_data[,10]/Total,
                                           Fec_4_pr = wide_fec_data[,11]/Total,
@@ -183,7 +187,7 @@ worms_fec <- fec_surv_data %>%
 
 worms_fec <- worms_fec %>% mutate(Tot_per_worm = rowSums(worms_fec[,c(12:14)]))
 
-#long format for François who likes it
+#long format because it's easier to manipulate afterwards
 
 long_worms_fec <- worms_fec %>% rename(Total_assay=Total, Total_assay_2=Total_2) %>%
   pivot_longer(cols=c("Fec_3","Fec_4","Fec_5"), names_to = "Day", names_prefix="Fec_", values_to = "Fec_today")
