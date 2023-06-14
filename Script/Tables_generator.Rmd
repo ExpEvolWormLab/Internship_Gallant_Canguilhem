@@ -1,0 +1,68 @@
+---
+title: "Tables_generator"
+author: "Matthieu Gallant Canguilhem"
+date: "2023-06-13"
+output: html_document
+---
+
+#Importing needed libraries
+
+```{r, warning=FALSE}
+
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(rstatix)
+library(lme4)
+library(ggpubr)
+library(kableExtra)
+library(magick)
+
+```
+
+#Importing data cleanned
+
+```{r}
+
+#import the cleaned data
+long_worms = read.csv2("../data_sheets/cleaned_data.csv")
+
+#specify our variables as factor and not strings or number
+cols_change <- c("Cycle","Block","Population","Treatment","Plates_nbr","Replicate","Env","Pop_type","Sex_struct","Day", "Trt_3", "Trt_6", "Rep2")
+long_worms[cols_change] <- lapply(long_worms[cols_change], as.factor)
+
+```
+
+#Number of observations
+
+```{r}
+table_1_young <- tibble(Treatment=c("Herm. alone", "Ev. Herm. alone", "Herm. + Male","Ev. Herm. + Male", "Female + Male", "Ev. Female + Male"), "Day 3" = c(60,159,60,160,60,159), "Day 4" = c(60,160,60,160,60,160), "Day 5"=c(29,80,30,79,29,80))
+
+table_1_old <- tibble(Treatment=c("Herm. alone", "Ev. Herm. alone", "Herm. + Male","Ev. Herm. + Male", "Female + Male", "Ev. Female + Male"), "Day 3" = c(60,159,60,160,60,160), "Day 4" = c(60,160,60,160,60,160), "Day 5"=c(60,160,60,160,60,160))
+
+kable(table_1, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Times") %>%
+  add_header_above(c(" " = 1, "Young mothers" = 3, "Old mothers " = 3))%>%
+  save_kable("../Results & graphs/Rapport/table1.png")
+```
+
+```{r}
+drop1_rn <- rownames(drop1_results)
+drop1_results <- as.data.frame(lapply(drop1_results[], function(x) if (is.numeric(x)) round(x, digits = 2) else x))
+drop1_results[2,4] <- "< 0.001"
+rownames(drop1_results) <- drop1_rn
+
+kable(drop1_results, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Times") %>%
+  save_kable("../Results & graphs/Rapport/model1_drop.png")
+
+drop2_rn <- rownames(drop2_results)
+drop2_results <- as.data.frame(lapply(drop2_results[], function(x) if (is.numeric(x)) round(x, digits = 2) else x))
+rownames(drop2_results) <- drop2_rn
+
+kable(drop2_results, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Times") %>%
+  save_kable("../Results & graphs/Rapport/model2_drop.png")
+```
+
+

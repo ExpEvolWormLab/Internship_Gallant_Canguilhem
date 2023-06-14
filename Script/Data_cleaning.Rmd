@@ -1,0 +1,224 @@
+---
+title: "data_analysis"
+author: "Matthieu Gallant Canguilhem"
+date: "2023-05-03"
+output: html_document
+---
+
+#Importing needed libraries
+
+```{r}
+
+library(dplyr)
+library(tidyverse)
+library(magrittr)
+
+```
+
+
+#Data cleaning and ordering
+
+##Importing data tables
+
+```{r}
+
+raw_fec_data = read.csv2("../data_sheets/fec_data.csv")
+sum(is.na(raw_fec_data)) #lots of NAs because no data for block 1, 5th day and 10 plates on 2nd block == only 5 missing values due to survey error
+raw_surv_data = read.csv2("../data_sheets/surv_data.csv")
+
+```
+
+##Creating variable to monitor the different blocks and populations
+```{r}
+
+raw_fec_data$Env <- ifelse(raw_fec_data$Block %in% c(1,2), "Ancestral", "Evolved")
+raw_fec_data$Pop_type <- ifelse(grepl("^.00",raw_fec_data$Population),"Ancestral","Evolved")
+raw_fec_data$Sex_struct <- ifelse(grepl("AA|A0",raw_fec_data$Population),"Androdioecious","Dioecious")
+
+raw_surv_data$Env <- ifelse(raw_surv_data$Block %in% c(1,2), "Ancestral", "Evolved")
+raw_surv_data$Pop_type <- ifelse(grepl("^.00",raw_surv_data$Population),"Ancestral","Evolved")
+raw_surv_data$Sex_struct <- ifelse(grepl("AA|A0",raw_surv_data$Population),"Androdioecious","Dioecious")
+
+```
+
+##Pivot to wider survival and fecundity 
+
+```{r, echo=FALSE}
+
+wide_fec_data <- raw_fec_data %>%
+  select(c(1:6,10:12, 8:9)) %>% #we need to remove the date or else the values inside a block are considered different by pivot_wider
+  pivot_wider(names_from = "Day_fec", 
+              values_from =  c("Fecundity")) 
+
+wide_surv_data <- raw_surv_data %>%
+  select(c(1:6,15:17, 8:14)) %>% #we need to remove the date or else the values inside a block are considered different by pivot_wider
+  pivot_wider(names_from = "Day_life", 
+              values_from =  c("Herm_alive","Herm_dead","Herm_killed","Male_alive","Male_dead","Male_killed")) 
+
+```
+
+##check for inconsistencies in the numbers of worms
+
+```{r}
+
+
+#we create a column that contains the number of worms the day before (theorically 5/5 and correct those who must be)
+
+wide_surv_data$Herm_alive_2 <- rep(5, times = 1320)
+wide_surv_data$Male_alive_2 <- rep(c(rep(0, times = 110), rep(5, times = 220)), times = 4)
+
+
+worms_consistency <- tibble(select(wide_surv_data, c(1:9)), 
+               A = wide_surv_data[,10] - wide_surv_data[,11] - wide_surv_data[,14] - wide_surv_data[,17], 
+               B = wide_surv_data[,11] - wide_surv_data[,12] - wide_surv_data[,15] - wide_surv_data[,18], 
+               C = wide_surv_data[,19] - wide_surv_data[,20] - wide_surv_data[,23] - wide_surv_data[,26], 
+               D = wide_surv_data[,20] - wide_surv_data[,21] - wide_surv_data[,24] - wide_surv_data[,27],
+               E = wide_surv_data[,28] - wide_surv_data[,10],
+               F = wide_surv_data[,29] - wide_surv_data[,19])
+
+colnames(worms_consistency)[10:13] <- c("Diff_H_3-4", "Diff_H_4-5", "Diff_M_3-4", "Diff_M_4-5")
+
+#positive numbers indicate worms that are missing while negative ones indicate worms that "appeared"
+#we need to redefine the number of worms on the first day according to the first survey (6-4 instead of 5-5)
+
+worms_consistency$row <- c(1:1320)
+
+consistency_1 <- worms_consistency %>% filter(E<0 | F<0)
+
+change_1 <- consistency_1[which(consistency_1$E+consistency_1$F==0 |
+                                  consistency_1$E-consistency_1$F==0 |
+                                  consistency_1$E == 0 |
+                                  consistency_1$F==0),][[16]] #gives the row to change in wide_surv, length = 78, which means 11 will be harder to solve
+
+wide_surv_data[change_1,c(28,29)] <- wide_surv_data[change_1,c(10,19)] #we copy the numbers from day 3 on day 2
+
+#we update the data frame and check that we only have 11 inconsistencies
+worms_consistency$E <- wide_surv_data[,28] - wide_surv_data[,10]
+worms_consistency$F <- wide_surv_data[,29] - wide_surv_data[,19]
+
+consistency_2 <- worms_consistency %>% filter(E<0 | F<0)
+
+#I checked the last ones by hand
+wide_surv_data[consistency_2[[16]],c(28,29)] <- tibble(A = c(6,6,7,6,6,4,4,4,6,6), B = c(4,4,4,4,4,6,6,6,4,4))
+
+#and other found while doing mortality (especially where male where found on plates treatment H)
+wide_surv_data[c(97,118,356,380,392,421,1083,1166),c(28,29)] <- tibble(A = c(4,5,4,4,4,4,4,6), B = c(1,6,1,1,1,1,1,4))
+
+worms_consistency$E <- wide_surv_data[,28] - wide_surv_data[,10]
+worms_consistency$F <- wide_surv_data[,29] - wide_surv_data[,19]
+
+#everything perfect, no more inconsistencies
+
+#let's reverse the widening of the df, not very nice but no other solutions known...
+
+long_surv_data <- merge(select(wide_surv_data, c(1:9)),select(pivot_longer(wide_surv_data, cols=c(28,10:12),names_to = "Day", names_prefix = "Herm_alive_", values_to="Herm_alive"),-c(10:25)))
+
+long_surv_data <- merge(long_surv_data,select(pivot_longer(wide_surv_data, cols=c(13:15),names_to = "Day", names_prefix = "Herm_dead_", values_to="Herm_dead"),-c(10:26)), all.x =TRUE)
+
+long_surv_data <- merge(long_surv_data,select(pivot_longer(wide_surv_data, cols=c(16:18),names_to = "Day", names_prefix = "Herm_killed_", values_to="Herm_killed"),-c(10:26)), all.x =TRUE)
+
+long_surv_data <- merge(long_surv_data,select(pivot_longer(wide_surv_data, cols=c(29,19:21),names_to = "Day", names_prefix = "Male_alive_", values_to="Male_alive"),-c(10:25)), all.x =TRUE)
+
+long_surv_data <- merge(long_surv_data,select(pivot_longer(wide_surv_data, cols=c(22:24),names_to = "Day", names_prefix = "Male_dead_", values_to="Male_dead"),-c(10:26)), all.x =TRUE)
+
+long_surv_data <- merge(long_surv_data,select(pivot_longer(wide_surv_data, cols=c(25:27),names_to = "Day", names_prefix = "Male_killed_", values_to="Male_killed"),-c(10:26)), all.x =TRUE)
+
+```
+
+##Calculating the survival of the worms
+
+```{r}
+
+#do we count the worms that are missing as "dead" ?? let's say no
+
+worms_mortality <- tibble(wide_surv_data[,c(1:9, 28, 12, 29, 21)], 
+                          Herm_dead_sum = rowSums(wide_surv_data[,c(13,14,15)]), 
+                          Herm_killed_sum = rowSums(wide_surv_data[,c(16,17,18)]), 
+                          Male_dead_sum = rowSums(wide_surv_data[,c(22,23,24)]), 
+                          Male_killed_sum = rowSums(wide_surv_data[,c(25,26,27)]))
+
+#we're gonna create a column with the missing worms in case we need it later
+worms_mortality$Herm_missing <- worms_mortality$Herm_alive_2 - worms_mortality$Herm_alive_5 -
+  worms_mortality$Herm_dead_sum - worms_mortality$Herm_killed_sum
+
+worms_mortality$Male_missing <- worms_mortality$Male_alive_2 - worms_mortality$Male_alive_5 -
+  worms_mortality$Male_dead_sum - worms_mortality$Male_killed_sum
+
+#how do we define mortality rate ? it's 100*alive_day_2-alive_day_5-killed/alive_day_2
+
+worms_mortality$Herm_mortality <- 100 * (worms_mortality$Herm_alive_2 - worms_mortality$Herm_alive_5 -
+                                      worms_mortality$Herm_killed_sum)/(worms_mortality$Herm_alive_2)
+
+worms_mortality$Male_mortality <- 100 * (worms_mortality$Male_alive_2 - worms_mortality$Male_alive_5 -
+                                      worms_mortality$Male_killed_sum)/(worms_mortality$Male_alive_2)
+
+#434 Na's in Male_mortality instead of 440 bc 6 males were found and killed in the 1-11 plates bringing the number of males over 0 but we won't study male mortality with H treatment
+```
+
+##Creating a dataframe with the number of worms that layed eggs
+
+```{r}
+#do we check that the number of males is enough regarding of fem/herm ? how do we define it ?
+
+wide_fec_data <- wide_fec_data %>% mutate(Total=rowSums(wide_fec_data[,c(10:12)],na.rm=TRUE),
+                                          Fec_3_pr = wide_fec_data[,10]/Total,
+                                          Fec_4_pr = wide_fec_data[,11]/Total,
+                                          Fec_5_pr = wide_fec_data[,12]/Total,
+                                          Total_2 = rowSums(wide_fec_data[,c(10:11)],na.rm=TRUE))
+
+#CAREFUL ! we can't compare total and percentage with NA's -> we'll need to seperate treatment H and M and missing data...
+
+herm_surv_data <- wide_surv_data %>% select(-c(19:27,29))
+#let's create a df with the number of fem/herm and the number of eggs
+fec_surv_data <- merge(wide_fec_data, herm_surv_data)
+
+
+#those who are alive and that we killed layed eggs not the dead and missing ones (first try then maybe we'll use the others)
+
+worms_fec <- fec_surv_data %>% 
+  mutate(Fec_3 = fec_surv_data[,10]/rowSums(fec_surv_data[,c(18,24)]),
+         Fec_4 = fec_surv_data[,11]/rowSums(fec_surv_data[,c(19,25)]),
+         Fec_5 = fec_surv_data[,12]/rowSums(fec_surv_data[,c(20,26)])) %>% 
+  select(-c(10:12,14:16,18:27))
+
+worms_fec <- worms_fec %>% mutate(Tot_per_worm = rowSums(worms_fec[,c(12:14)]))
+
+#long format for François who likes it
+
+long_worms_fec <- worms_fec %>% rename(Total_assay=Total, Total_assay_2=Total_2) %>%
+  pivot_longer(cols=c("Fec_3","Fec_4","Fec_5"), names_to = "Day", names_prefix="Fec_", values_to = "Fec_today")
+
+long_worms_fec <- merge(long_worms_fec, rename(raw_fec_data[,-7], "Day" = "Day_fec", "Total_fec" = "Fecundity"))
+
+long_worms_fec$Block <- as.factor(long_worms_fec$Block) #as a factor
+
+long_worms <- merge(long_worms_fec, long_surv_data[which(long_surv_data$Day!="2"),], all.y = TRUE)
+
+long_worms <- long_worms %>% rename(Herm_alive_today = Herm_alive, Male_alive_today = Male_alive)
+
+worms_yesterday <- long_surv_data %>% 
+  select(-c(12,13,15,16)) %>%
+  filter(Day!=5) %>%
+  mutate(Day=as.character(as.numeric(Day)+1)) %>%
+  rename(Herm_alive_yesterday = Herm_alive, Male_alive_yesterday = Male_alive)
+
+long_worms <- merge(long_worms, worms_yesterday)
+
+#perfect ! just need to create the fec_yesterday column
+
+long_worms <- long_worms %>% mutate(Fec_yesterday = Total_fec/Herm_alive_yesterday)
+
+#add mortality value to long_worms
+
+long_worms <- merge(long_worms, worms_mortality[,-c(10:19)])
+
+
+#remove the 30 rows from AD7 treatment H from Block 2
+long_worms <- long_worms %>% filter(Treatment!="")
+
+#Create a new variable to study both genetic effect and male presence and REP2 for random effect on lmer
+long_worms <- long_worms %>% mutate(Trt_3 = paste(Treatment, Sex_struct, sep="_"), Trt_6 = paste(Trt_3, Pop_type, sep="_"), Rep2 = paste(Population, Block, Replicate))
+
+write.csv2(long_worms, file="../data_sheets/cleaned_data.csv", row.names = FALSE)
+
+```

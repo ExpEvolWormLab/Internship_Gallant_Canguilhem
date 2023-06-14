@@ -1,0 +1,332 @@
+---
+title: "Graphs generator"
+author: "Matthieu Gallant Canguilhem"
+date: "2023-05-11"
+output: html_document
+---
+
+#Importing needed libraries
+
+```{r, warning=FALSE}
+
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(rstatix)
+library(lme4)
+library(ggpubr)
+
+```
+
+#Importing data cleanned
+
+```{r}
+
+#import the cleaned data
+long_worms = read.csv2("../data_sheets/cleaned_data.csv")
+
+#specify our variables as factor and not strings or number
+cols_change <- c("Cycle","Block","Population","Treatment","Plates_nbr","Replicate","Env","Pop_type","Sex_struct","Day", "Trt_3", "Trt_6", "Rep2")
+long_worms[cols_change] <- lapply(long_worms[cols_change], as.factor)
+
+```
+
+#Main graphs
+
+##First fig of two panels = effect of males and genetics separately
+
+```{r}
+
+#just a random plot but I need its legend for mine
+plot_legend <- long_worms %>%
+  filter(Pop_type=="Ancestral") %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill= Trt_3), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#358EE0", "#F39034", "#94DA4C"), name = "Treatment", labels=c("Herm. alone", "Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(0,315)) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  theme(legend.position = "bottom")
+
+#plot the  fecundity in treatment with and without males
+fig_1A <- long_worms %>%
+  filter(Pop_type=="Ancestral" & Trt_3!="M_Dioecious" & Env=="Ancestral") %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill=Treatment), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#358EE0", "#F39034"), name = " ", labels = c("Herm. alone", "Herm. + Male")) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  annotate(geom="text", x=c(1:3), y=315, label=c("***", "***", "***")) +
+  scale_y_continuous(limits=c(0,315)) +
+  theme_classic()
+
+#plot the fecundity depending on the population (And or Dio)
+fig_1B <- long_worms %>%
+  filter(Pop_type=="Ancestral" & Trt_3!="H_Androdioecious" & Env=="Ancestral") %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill= Sex_struct), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#F39034", "#94DA4C"), name = "Treatment", labels=c("Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(0,315)) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  annotate(geom="text", x=c(1:3), y=315, label=c("ns","ns","*")) +
+  theme_classic()
+
+fig_1C <- long_worms %>%
+  filter(Pop_type=="Ancestral" & Trt_3!="H_Androdioecious" & Env=="Ancestral" & Block!=1 & Day==3) %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Sex_struct, y=Tot_per_worm, fill= Sex_struct), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#F39034", "#94DA4C"), name = "Treatment", labels=c("Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(200,700)) +
+  scale_x_discrete(labels=c("Herm. + male","Female + male")) +
+  labs(y = "Total fecundity (mean offspring per worm)", x="Breeding system") +
+  annotate(geom="text", x=c(1.5), y=700, label=c("***")) +
+  theme_classic()
+
+#arrange the two sub graphs in a single one with two panels
+fig_1 <- ggarrange(fig_1A, fig_1B, fig_1C, labels=c("A","B","C"),common.legend = TRUE, legend.grob = get_legend(plot_legend), legend = "bottom", nrow = 1)
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_result_1.png", plot = fig_1, device = png, width = 9, height = 4)
+
+```
+
+##Second fig of three panels = effect of mothers' age within treatment along days
+
+```{r}
+
+#a big plot with 3 panels (one per treatment) with fecundity along days between the age of mothers
+fig_2 <- ggplot() + 
+  geom_boxplot(data = long_worms[which(long_worms$Pop_type=="Ancestral" & long_worms$Trt_3=="H_Androdioecious"),],mapping=aes(x=as.factor(as.numeric(Day)+10), y=Fec_yesterday, linetype= Env, fill=Trt_3), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Pop_type=="Ancestral" & long_worms$Trt_3=="M_Androdioecious"),], mapping=aes(x=as.factor(as.numeric(Day)+15), y=Fec_yesterday, linetype= Env, fill=Trt_3), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Pop_type=="Ancestral" & long_worms$Trt_3=="M_Dioecious"),], mapping = aes(x=as.factor(as.numeric(Day)+18), y=Fec_yesterday, linetype= Env, fill=Trt_3), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#358EE0", "#F39034", "#94DA4C"), name="Treatment", labels=c("Herm. alone", "Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(0,325)) +
+  scale_linetype_discrete(name = "Age of mothers", labels = c("Young", "Old")) +
+  labs(y = "Fecundity (mean offspring per worm)", x="Day") +
+  geom_vline(xintercept = c(3.5, 6.5), colour="red", linetype="longdash") +
+  annotate(geom="text", x=c(1:9), y=315, label=c("***", "***", "ns", "***", "ns", "ns", "***", "*", "***")) +
+  annotate(geom="text", x=c(0.6,3.7,6.7), y=325, label=c("A","B","C"), fontface="bold") +
+  scale_x_discrete(labels=c("3","4","5","3","4","5","3","4","5")) +
+  theme_classic()
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_result_2.png", plot = fig_2, device = png, width = 9, height = 4)
+
+```
+
+##Third fig of three panels = total fecundity
+
+```{r}
+
+## fig 3 on total fec with three panels for treatments, mother's age and population
+fig_fec_tot <- long_worms %>%
+  ggplot() +
+  geom_boxplot(data = long_worms[which(long_worms$Block != 1 & long_worms$Day == 3),], 
+               mapping = aes(x = interaction(Pop_type, Trt_3), y = Tot_per_worm, linetype = Env, fill = Trt_6), 
+               outlier.colour = "grey") +
+  scale_fill_manual(values = c("#358EE0","#3552E0", "#F39034","#EB6105", "#94DA4C","#60A60B"), 
+                    name = "Treatment", 
+                    labels = c("Herm. alone", "Ev. Herm. alone", "Herm. + Male","Ev. Herm. + Male", "Female + Male", "Ev. Female + Male")) +
+  scale_y_continuous(limits = c(170, 875)) +
+  scale_x_discrete(labels = c(rep(c("Ancestral", "Evolved"),3))) +
+  scale_linetype_discrete(name = "Age of mothers", labels = c("Young", "Old")) +
+  labs(y = "Total fecundity (mean offspring per worm)", x = "Population") +
+  geom_vline(xintercept = c(2.5, 4.5), colour = "red", linetype = "longdash") +
+  annotate(geom = "text", x = c(1:6), y = 820, label = c("ns", "*", "ns", "ns", "***", "***")) +
+  annotate(geom="text", x=c(0.6,2.7,4.7), y=875, label=c("A","B","C"), fontface="bold") +
+  theme_classic()
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_fec_tot.png", plot = fig_fec_tot, device = png, width = 6, height = 3)
+
+```
+
+##Graphs of all the pops and two panels one for each mother's age
+
+```{r}
+
+#a random plot but I need its legend
+plot_legend_2 <- long_worms %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill= Trt_6)) +
+  scale_fill_manual(values = c("#358EE0","#3552E0", "#F39034","#EB6105", "#94DA4C","#60A60B"), name = "Treatment", labels = c("Herm. alone", "Ev. Herm. alone", "Herm. + Male","Ev. Herm. + Male", "Female + Male", "Ev. Female + Male")) +
+  scale_y_continuous(limits=c(0,315)) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  theme(legend.position = "right")
+
+#plot offspring fecundity that had young mothers
+ev_1 <- ggplot() + 
+  geom_boxplot(data = long_worms[which(long_worms$Env=="Ancestral" & long_worms$Trt_3=="H_Androdioecious"),],mapping=aes(x=as.factor(as.numeric(Day)+10), y=Fec_yesterday, fill=Trt_6), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Env=="Ancestral" & long_worms$Trt_3=="M_Androdioecious"),], mapping=aes(x=as.factor(as.numeric(Day)+15), y=Fec_yesterday, fill=Trt_6), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Env=="Ancestral" & long_worms$Trt_3=="M_Dioecious"),], mapping = aes(x=as.factor(as.numeric(Day)+18), y=Fec_yesterday, fill=Trt_6), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#358EE0","#3552E0", "#F39034", "#EB6105", "#94DA4C", "#60A60B"), name="Treatment", labels=c("Herm. alone", "Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(0,385)) +
+  scale_linetype_discrete(name = "Population", labels = c("Ancestral", "Evolved")) +
+  labs(y = "Fecundity (mean offspring per worm)", x="Day", title= "Young mothers") +
+  geom_vline(xintercept = c(3.5, 6.5), colour="red", linetype="longdash") +
+  annotate(geom="text", x=c(1:9), y=385, label=c("***", "*", "ns", "***", "ns", "ns", "**", "**", "**")) +
+  scale_x_discrete(labels=c("3","4","5","3","4","5","3","4","5")) +
+  theme_classic()
+
+#plot offspring fecundity that had old mothers
+ev_2 <- ggplot() + 
+  geom_boxplot(data = long_worms[which(long_worms$Env=="Evolved" & long_worms$Trt_3=="H_Androdioecious"),],mapping=aes(x=as.factor(as.numeric(Day)+10), y=Fec_yesterday, fill=Trt_6), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Env=="Evolved" & long_worms$Trt_3=="M_Androdioecious"),], mapping=aes(x=as.factor(as.numeric(Day)+15), y=Fec_yesterday, fill=Trt_6), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Env=="Evolved" & long_worms$Trt_3=="M_Dioecious"),], mapping = aes(x=as.factor(as.numeric(Day)+18), y=Fec_yesterday, fill=Trt_6), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#358EE0","#3552E0", "#F39034", "#EB6105", "#94DA4C", "#60A60B"), name="Treatment", labels=c("Herm. alone", "Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(0,385)) +
+  scale_linetype_discrete(name = "Population", labels = c("Ancestral", "Evolved")) +
+  labs(y = "Fecundity (mean offspring per worm)", x="Day", title = "Old mothers") +
+  geom_vline(xintercept = c(3.5, 6.5), colour="red", linetype="longdash") +
+  annotate(geom="text", x=c(1:9), y=385, label=c("ns", "***", "ns", "ns", "ns", "ns", "ns", "ns", "ns")) +
+  scale_x_discrete(labels=c("3","4","5","3","4","5","3","4","5")) +
+  theme_classic()
+
+#assemble the two plots into a big one with two panels
+fig_ev <- ggarrange(ev_1, ev_2, labels=c("A","B"), common.legend = TRUE, legend = "right", legend.grob = get_legend(plot_legend_2), nrow = 2)
+
+#saving it 
+ggsave("../Results & graphs/Rapport/fig_ev.png", plot = fig_ev, device = png, width = 9, height = 9)
+
+```
+
+#Supplementary graphs
+
+##First supplementary fig
+```{r}
+
+#just a random plot but I need its legend for mine
+plot_legend_ev <- long_worms %>%
+  filter(Pop_type=="Evolved") %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill= Trt_3)) +
+  scale_fill_manual(values=c("#3552E0", "#EB6105", "#60A60B"), name = "Treatment", labels=c("Ev. Herm. alone", "Ev. Herm. + Male","Ev. Female + Male")) +
+  scale_y_continuous(limits=c(0,315)) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  theme(legend.position = "bottom")
+
+#plot the  fecundity in treatment with and without males
+fig_1A_app <- long_worms %>%
+  filter(Pop_type=="Evolved" & Trt_3!="M_Dioecious" & Env=="Ancestral") %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill=Treatment), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#3552E0", "#EB6105"), name = " ", labels = c("Herm. alone", "Herm. + Male")) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  annotate(geom="text", x=c(1:3), y=335, label=c("***", "***", "***")) +
+  scale_y_continuous(limits=c(0,335)) +
+  theme_classic()
+
+#plot the fecundity depending on the population (And or Dio)
+fig_1B_app <- long_worms %>%
+  filter(Pop_type=="Evolved" & Trt_3!="H_Androdioecious" & Env=="Ancestral") %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Day, y=Fec_yesterday, fill= Sex_struct), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#EB6105", "#60A60B"), name = "Treatment", labels=c("Herm. + Male","Female + Male")) +
+  scale_y_continuous(limits=c(0,335)) +
+  labs(y = "Fecundity (mean offspring per worm)") +
+  annotate(geom="text", x=c(1:3), y=335, label=c("ns","ns","ns")) +
+  theme_classic()
+
+fig_1C_app <- long_worms %>%
+  filter(Pop_type=="Evolved" & Trt_3!="H_Androdioecious" & Env=="Ancestral" & Block!=1 & Day==3) %>%
+  ggplot() + 
+  geom_boxplot(mapping = aes(x=Sex_struct, y=Tot_per_worm, fill= Sex_struct), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#EB6105", "#60A60B"), name = "Treatment", labels=c("Ev. Herm. + Male"," Ev. Female + Male")) +
+  scale_y_continuous(limits=c(200,715)) +
+  scale_x_discrete(labels=c("Ev. Herm. + male","Ev. Female + male")) +
+  labs(y = "Total fecundity (mean offspring per worm)", x="Breeding system") +
+  annotate(geom="text", x=c(1.5), y=715, label=c("***")) +
+  theme_classic()
+
+#arrange the two sub graphs in a single one with two panels
+fig_1_app <- ggarrange(fig_1A_app, fig_1B_app, fig_1C_app, labels=c("A","B","C"),common.legend = TRUE, legend.grob = get_legend(plot_legend_ev), legend = "bottom", nrow = 1)
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_app_1.png", plot = fig_1_app, device = png, width = 9, height = 4)
+
+```
+
+##Second supplementary graph
+
+```{r}
+
+#a big plot with 3 panels (one per treatment) with fecundity along days between the age of mothers
+fig_2_app <- ggplot() + 
+  geom_boxplot(data = long_worms[which(long_worms$Pop_type=="Evolved" & long_worms$Trt_3=="H_Androdioecious"),],mapping=aes(x=as.factor(as.numeric(Day)+10), y=Fec_yesterday, linetype= Env, fill=Trt_3), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Pop_type=="Evolved" & long_worms$Trt_3=="M_Androdioecious"),],mapping=aes(x=as.factor(as.numeric(Day)+13), y=Fec_yesterday, linetype= Env, fill=Trt_3), outlier.colour = "grey") +
+  geom_boxplot(data = long_worms[which(long_worms$Pop_type=="Evolved" & long_worms$Trt_3=="M_Dioecious"),], mapping = aes(x=as.factor(as.numeric(Day)+16), y=Fec_yesterday, linetype= Env, fill=Trt_3), outlier.colour = "grey") +
+  scale_fill_manual(values=c("#3552E0", "#EB6105", "#60A60B"), name="Treatment", labels=c("Ev. Herm. alone", "Ev. Herm. + Male","Ev. Female + Male")) +
+  scale_y_continuous(limits=c(0,345)) +
+  scale_linetype_discrete(name = "Age of mothers", labels = c("Young", "Old")) +
+  labs(y = "Fecundity (mean offspring per worm)", x="Day") +
+  geom_vline(xintercept = c(3.5, 6.5), colour="red", linetype="longdash") +
+  annotate(geom="text", x=c(1:9), y=335, label=c("***", "***", "ns", "***", "ns", "*", "***", "ns", "*")) +
+  annotate(geom="text", x=c(0.6,3.7,6.7), y=345, label=c("A","B","C"), fontface="bold") +
+  scale_x_discrete(labels=c("3","4","5","3","4","5","3","4","5")) +
+  theme_classic()
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_app_2.png", plot = fig_2_app, device = png, width = 9, height = 4)
+
+```
+
+##Third
+
+```{r}
+
+#just changed the place of parameters
+fig_fec_tot_app <- long_worms %>%
+  ggplot() +
+  geom_boxplot(data = long_worms[which(long_worms$Block != 1 & long_worms$Day == 3),], 
+               mapping = aes(x = interaction(Env, Trt_3), y = Tot_per_worm, fill = Trt_6), 
+               outlier.colour = "grey") +
+  scale_fill_manual(values = c("#358EE0","#3552E0", "#F39034","#EB6105", "#94DA4C","#60A60B"), 
+                    name = "Treatment", 
+                    labels = c("Herm. alone", "Ev. Herm. alone", "Herm. + Male","Ev. Herm. + Male", "Female + Male", "Ev. Female + Male")) +
+  scale_y_continuous(limits=c(170,875)) +
+  scale_x_discrete(labels=c(rep(c("Young","Old"),3))) +
+  scale_linetype_discrete(name = "Population", labels = c("Ancestral", "Evolved")) +
+  labs(y = "Total fecundity (mean offspring per worm)", x="Age of mothers") +
+  geom_vline(xintercept = c(2.5, 4.5), colour="red", linetype="longdash") +
+  annotate(geom="text", x=c(1:6), y=820, label=c("ns", "*", "ns", "ns", "***", "ns")) +
+  annotate(geom="text", x=c(0.6,2.7,4.7), y=875, label=c("A","B","C"), fontface="bold") +
+  theme_classic()
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_fec_tot_app.png", plot = fig_fec_tot_app, device = png, width = 6, height = 3)
+```
+
+
+##Fourth
+
+```{r}
+
+#plot the effect of mother's age on ancestral pop
+fig_annexe_1A <- long_worms %>%
+  filter(Pop_type=="Ancestral") %>%
+  ggplot() +
+  geom_boxplot(mapping= aes(x=Day, y=Fec_yesterday, linetype=Env), fill="#E6C90E", outlier.colour = "grey") +
+  scale_y_continuous(limits=c(0,325)) +
+  scale_linetype_discrete(name = "Age of mothers", labels = c("Young", "Old")) +
+  labs(y = "Daily fecundity (offspring per worm)", x="Day") +
+  annotate(geom="text", x=c(1:3), y=325, label=c("***", "***", "***")) +
+  theme_classic()
+
+#plot the effect of mother's age on evolved pop
+fig_annexe_1B <- long_worms %>%
+  filter(Pop_type=="Evolved" & Block !=1) %>%
+  ggplot() +
+  geom_boxplot(mapping= aes(x=Day, y=Fec_yesterday, linetype=Env), fill="#E6C90E", outlier.colour = "grey") +
+  scale_y_continuous(limits=c(0,325)) +
+  scale_linetype_discrete(name = "Age of mothers", labels = c("Young", "Old")) +
+  labs(y = "Daily fecundity (offspring per worm)", x="Day") +
+  annotate(geom="text", x=c(1:3), y=325, label=c("***", "***", "*")) +
+  theme_classic()
+
+#assembling the two plots in a single one with two panels
+fig_annexe_1 <- ggarrange(fig_annexe_1A, fig_annexe_1B, labels=c("A", "B"), common.legend = TRUE, legend = "bottom", nrow=1)
+
+#saving it
+ggsave("../Results & graphs/Rapport/fig_annex_1.png", plot = fig_annexe_1, device = png, width = 6, height = 4)
+
+```
+
+
